@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#f7f7f4">
+<title>Proj — Your project desk</title>
+<style>
+:root{--ink:#20231f;--muted:#858a82;--line:#e7e9e3;--paper:#fff;--canvas:#f7f7f4;--green:#355f4c;--mint:#e5efe7;--lime:#d9f36a;--shadow:0 15px 38px #2433240a}
+*{box-sizing:border-box}body{margin:0;background:var(--canvas);color:var(--ink);font:15px/1.5 Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}button,input,select{font:inherit}button{cursor:pointer}
+.layout{min-height:100vh;display:grid;grid-template-columns:238px 1fr}aside{background:#f0f1ed;border-right:1px solid var(--line);padding:27px 17px;display:flex;flex-direction:column;gap:34px}
+.brand{display:flex;align-items:center;gap:11px;padding:0 10px;font-size:18px;font-weight:800;letter-spacing:-.05em}.mark{width:31px;height:31px;border-radius:10px;background:var(--green);color:white;display:grid;place-items:center}
+.label{margin:0 0 9px;padding:0 12px;color:var(--muted);font-size:10px;font-weight:750;letter-spacing:.13em;text-transform:uppercase}.nav{display:grid;gap:4px}.nav button{display:flex;align-items:center;gap:12px;width:100%;border:0;border-radius:10px;background:transparent;color:#5f655d;padding:10px 12px;text-align:left;font-size:13px;font-weight:600}.nav button:hover,.nav button.active{background:white;color:var(--green);box-shadow:0 2px 7px #23301a0b}.ico{width:18px;text-align:center;font-size:16px}.bottom{margin-top:auto}.profile{display:flex;align-items:center;gap:11px;padding:15px 10px 0;border-top:1px solid #dedfd9}.avatar{width:34px;height:34px;border-radius:50%;background:#d8e8d9;color:var(--green);display:grid;place-items:center;font-size:12px;font-weight:800}.profile b{display:block;font-size:12px}.profile small{color:var(--muted);font-size:11px}
+main{padding:34px clamp(20px,5vw,70px) 55px;max-width:1400px;width:100%;margin:auto}.top{display:flex;justify-content:space-between;align-items:center;margin-bottom:30px}.eyebrow{color:var(--muted);font-size:11px;letter-spacing:.08em;font-weight:650}.date{color:#646a62;font-size:12px}.actions{display:flex;gap:9px}.primary{border:0;border-radius:10px;background:var(--green);color:white;padding:10px 15px;font-size:12px;font-weight:700}.primary:hover{background:#294b3a}.iconbtn{width:39px;border:1px solid var(--line);border-radius:11px;background:white;color:#646a62}
+h1{margin:0;font-size:clamp(27px,3vw,36px);line-height:1.15;letter-spacing:-.055em}.intro{margin:8px 0 22px;color:var(--muted);font-size:13px}
+.hero{display:grid;grid-template-columns:1.3fr .7fr;gap:15px;margin-bottom:18px}.welcome,.progress{background:white;border:1px solid var(--line);border-radius:17px;box-shadow:var(--shadow)}.welcome{padding:23px 26px;display:flex;justify-content:space-between;align-items:center;overflow:hidden;position:relative}.welcome:after{content:"";position:absolute;width:200px;height:200px;border-radius:50%;background:#eef5e9;right:15%;top:-125px}.welcome>div:first-child{z-index:1}.welcome h2{margin:0;font-size:20px;letter-spacing:-.04em}.welcome p{margin:5px 0 14px;color:var(--muted);font-size:12px}.spark{z-index:1;width:52px;height:52px;border-radius:16px;background:var(--lime);display:grid;place-items:center;font-size:24px;transform:rotate(8deg);margin-right:5%}
+.progress{padding:19px 22px;display:flex;justify-content:space-between;align-items:center;gap:10px}.progress h3{margin:0;font-size:13px}.progress p{margin:5px 0 0;color:var(--muted);font-size:11px}.ring{width:65px;height:65px;flex:none;border-radius:50%;background:conic-gradient(var(--green) var(--pct,0%),#eef0eb 0);display:grid;place-items:center;position:relative}.ring:before{content:"";position:absolute;inset:6px;border-radius:50%;background:white}.ring b{z-index:1;font-size:13px}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:28px}.stat{background:white;border:1px solid var(--line);border-radius:14px;padding:16px 18px}.stat-head{display:flex;justify-content:space-between;color:var(--muted);font-size:11px}.stat-icon{color:var(--green);width:25px;height:25px;border-radius:8px;background:#f1f3ef;display:grid;place-items:center}.stat strong{display:block;margin-top:8px;font-size:25px;line-height:1;letter-spacing:-.04em}.stat small{color:var(--muted);font-size:11px}
+.section{display:flex;justify-content:space-between;align-items:end;gap:14px;margin-bottom:12px}.section h2{margin:0;font-size:18px;letter-spacing:-.035em}.section p{margin:3px 0 0;color:var(--muted);font-size:12px}.filters{display:flex;gap:4px;padding:4px;border:1px solid var(--line);background:#f0f1ed;border-radius:10px}.filters button{border:0;border-radius:7px;padding:6px 11px;background:transparent;color:var(--muted);font-size:11px;font-weight:700}.filters button.active{background:white;color:var(--green);box-shadow:0 1px 4px #0001}
+.panel{background:white;border:1px solid var(--line);border-radius:15px;overflow:hidden;box-shadow:var(--shadow)}ul{list-style:none;margin:0;padding:0}.row{display:grid;grid-template-columns:21px minmax(0,1fr) auto auto;align-items:center;gap:12px;padding:14px 17px;border-bottom:1px solid #eff0ec}.row:last-child{border:0}.check{width:19px;height:19px;border:1.5px solid #c9cdc4;border-radius:6px;background:white;color:white;padding:0}.row.done .check{background:var(--green);border-color:var(--green)}.row.done .check:after{content:"✓";font-size:12px;font-weight:800}.task-title{display:block;font-size:13px;font-weight:650}.done .task-title{text-decoration:line-through;color:#999e95}.task-project{display:block;margin-top:2px;color:var(--muted);font-size:11px}.priority{padding:4px 8px;border-radius:20px;font-size:10px;white-space:nowrap}.High{background:#fae9e2;color:#9e5138}.Medium{background:#f8f0d9;color:#897126}.Low{background:#e9efe6;color:#577154}.empty{padding:36px 20px;text-align:center;color:var(--muted);font-size:12px}.empty b{display:block;color:var(--ink);font-size:14px;margin-bottom:3px}
+.form{display:grid;grid-template-columns:minmax(130px,1fr) 145px 110px auto;gap:8px;padding:13px;border-top:1px solid var(--line);background:#fcfcfa}.form input,.form select{min-width:0;border:1px solid var(--line);border-radius:9px;background:white;padding:9px 10px;font-size:12px;outline:none}.form input:focus,.form select:focus{border-color:#8aa894;box-shadow:0 0 0 3px #355f4c12}.foot{text-align:center;color:#a0a49d;font-size:10px;margin-top:16px}
+@media(max-width:800px){.layout{grid-template-columns:68px 1fr}aside{padding:23px 9px;align-items:center}.brand{padding:0}.brand-name,.label,.nav-text,.profile-copy{display:none}.nav{width:100%}.nav button{justify-content:center;padding:11px 0}.ico{font-size:18px}.bottom{width:100%}.profile{justify-content:center;padding:14px 0 0}.hero{grid-template-columns:1fr}}
+@media(max-width:560px){main{padding:22px 13px 38px}.top{margin-bottom:24px}.date,.iconbtn{display:none}.actions .primary{padding:9px 10px}.welcome{padding:19px}.spark{width:44px;height:44px;margin:0}.stats{gap:7px}.stat{padding:12px 10px}.stat strong{font-size:22px}.stat-icon{display:none}.section{align-items:flex-start;flex-direction:column}.filters{width:100%}.filters button{flex:1}.row{grid-template-columns:21px minmax(0,1fr) auto;gap:9px;padding:12px}.priority{grid-column:3;grid-row:1 / span 2}.form{grid-template-columns:1fr 1fr}.form input:first-child,.form button{grid-column:1 / -1}}
+</style>
+</head>
+<body>
+<div class="layout">
+<aside aria-label="Main navigation">
+  <div class="brand"><span class="mark">p</span><span class="brand-name">proj<span style="color:#789182">.</span></span></div>
+  <div><p class="label">Workspace</p><nav class="nav"><button class="active"><span class="ico">⌂</span><span class="nav-text">Overview</span></button><button id="focusNav"><span class="ico">◷</span><span class="nav-text">Open tasks</span></button></nav></div>
+  <div><p class="label">Your space</p><nav class="nav"><button class="project-filter active" data-project="All projects"><span class="ico">▦</span><span class="nav-text">All projects</span></button><button class="project-filter" data-project="Personal"><span class="ico">◌</span><span class="nav-text">Personal</span></button><button class="project-filter" data-project="Work"><span class="ico">◫</span><span class="nav-text">Work</span></button></nav></div>
+  <div class="bottom"><nav class="nav"><button id="clearDone"><span class="ico">⌫</span><span class="nav-text">Clear completed</span></button></nav><div class="profile"><div class="avatar">P</div><div class="profile-copy"><b>My workspace</b><small>Personal plan</small></div></div></div>
+</aside>
+<main>
+  <header class="top"><div><div class="eyebrow">YOUR WORKSPACE</div><div class="date" id="date"></div></div><div class="actions"><button class="iconbtn" id="showAll" aria-label="Show all tasks">⌕</button><button class="primary" id="focusAdd">＋ New task</button></div></header>
+  <h1>Make room for good work.</h1><p class="intro">A calmer place to plan what matters.</p>
+  <section class="hero" aria-label="Workspace summary">
+    <div class="welcome"><div><h2>A little progress adds up.</h2><p id="welcomeText">Pick one thing and get started.</p><button class="primary" id="startFocus">Add your next task →</button></div><div class="spark" aria-hidden="true">✳</div></div>
+    <div class="progress"><div><h3>All-time progress</h3><p id="progressText">Keep your momentum going</p></div><div class="ring" id="ring"><b id="percent">0%</b></div></div>
+  </section>
+  <section class="stats" aria-label="Task statistics">
+    <article class="stat"><div class="stat-head"><span>Open tasks</span><span class="stat-icon">◷</span></div><strong id="openCount">0</strong><small>Ready when you are</small></article>
+    <article class="stat"><div class="stat-head"><span>Completed</span><span class="stat-icon">✓</span></div><strong id="doneCount">0</strong><small>Small wins count</small></article>
+    <article class="stat"><div class="stat-head"><span>Projects</span><span class="stat-icon">▦</span></div><strong id="projectCount">0</strong><small>Spaces in motion</small></article>
+  </section>
+  <section aria-labelledby="taskHeading"><div class="section"><div><h2 id="taskHeading">Your tasks</h2><p id="subhead">A clear list makes a clear mind.</p></div><div class="filters" role="group" aria-label="Filter tasks"><button class="active" data-filter="all">All</button><button data-filter="open">Open</button><button data-filter="done">Done</button></div></div>
+    <div class="panel"><ul id="taskList" aria-live="polite"></ul><form class="form" id="taskForm"><input id="taskInput" maxlength="100" placeholder="Add a task to your list…" aria-label="Task name" required><select id="projectInput" aria-label="Project"><option>Personal</option><option>Work</option></select><select id="priorityInput" aria-label="Priority"><option>Medium</option><option>High</option><option>Low</option></select><button class="primary" type="submit">Add task</button></form></div>
+  </section>
+  <p class="foot">Tasks are saved in this browser and never sent to a server.</p>
+</main>
+</div>
+<script>
+const KEY="proj.tasks.v1";
+const starter=[
+{id:1,title:"Choose one thing to focus on",project:"Personal",priority:"Medium",done:false},
+{id:2,title:"Write down the next small step",project:"Work",priority:"Low",done:false},
+{id:3,title:"Make space for a break",project:"Personal",priority:"Low",done:false}
+];
+let tasks=load(),filter="all",project="All projects";
+function load(){try{const data=localStorage.getItem(KEY);return data===null?starter:JSON.parse(data)}catch{return starter}}
+function save(){localStorage.setItem(KEY,JSON.stringify(tasks))}
+function esc(s){return String(s).replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]})}
+function render(){
+ const list=tasks.filter(function(t){return (filter==="all"||(filter==="open"&&!t.done)||(filter==="done"&&t.done))&&(project==="All projects"||t.project===project)});
+ const ul=document.getElementById("taskList");
+ if(!list.length){ul.innerHTML='<li class="empty"><b>'+(filter==="done"?"No completed tasks yet.":"All clear.")+'</b>'+(filter==="done"?"Finish a task and it will show up here.":"Add a task below to get your plans moving.")+'</li>'}
+ else{ul.innerHTML=list.map(function(t){return '<li class="row '+(t.done?"done":"")+'"><button class="check" type="button" aria-label="'+(t.done?"Mark open":"Complete")+': '+esc(t.title)+'" data-toggle="'+t.id+'"></button><div><span class="task-title">'+esc(t.title)+'</span><span class="task-project">'+esc(t.project)+'</span></div><span class="priority '+esc(t.priority)+'">'+esc(t.priority)+'</span></li>'}).join("")}
+ const open=tasks.filter(function(t){return !t.done}).length,done=tasks.filter(function(t){return t.done}).length,total=tasks.length,pct=total?Math.round(done/total*100):0;
+ document.getElementById("openCount").textContent=open;document.getElementById("doneCount").textContent=done;document.getElementById("projectCount").textContent=new Set(tasks.map(function(t){return t.project})).size;
+ document.getElementById("percent").textContent=pct+"%";document.getElementById("ring").style.setProperty("--pct",pct+"%");
+ document.getElementById("progressText").textContent=total?done+" of "+total+" tasks completed":"Add a task to begin";
+ document.getElementById("welcomeText").textContent=open?open+" "+(open===1?"task":"tasks")+" waiting in your list.":"You cleared the list. Enjoy the breathing room.";
+ document.getElementById("subhead").textContent=project==="All projects"?"A clear list makes a clear mind.":project+" tasks";
+}
+document.getElementById("taskList").addEventListener("click",function(e){const button=e.target.closest("[data-toggle]");if(!button)return;const id=Number(button.dataset.toggle);tasks=tasks.map(function(t){return t.id===id?Object.assign({},t,{done:!t.done}):t});save();render()});
+document.getElementById("taskForm").addEventListener("submit",function(e){e.preventDefault();const input=document.getElementById("taskInput"),title=input.value.trim();if(!title)return;tasks.unshift({id:Date.now(),title:title,project:document.getElementById("projectInput").value,priority:document.getElementById("priorityInput").value,done:false});save();input.value="";filter="all";document.querySelectorAll("[data-filter]").forEach(function(b){b.classList.toggle("active",b.dataset.filter==="all")});render();input.focus()});
+document.querySelectorAll("[data-filter]").forEach(function(b){b.addEventListener("click",function(){filter=b.dataset.filter;document.querySelectorAll("[data-filter]").forEach(function(x){x.classList.toggle("active",x===b)});render()})});
+document.querySelectorAll(".project-filter").forEach(function(b){b.addEventListener("click",function(){project=b.dataset.project;document.querySelectorAll(".project-filter").forEach(function(x){x.classList.toggle("active",x===b)});render()})});
+function focusInput(){const input=document.getElementById("taskInput");input.focus();input.scrollIntoView({behavior:"smooth",block:"center"})}
+document.getElementById("focusAdd").addEventListener("click",focusInput);document.getElementById("startFocus").addEventListener("click",focusInput);
+document.getElementById("showAll").addEventListener("click",function(){filter="all";project="All projects";document.querySelectorAll("[data-filter]").forEach(function(b){b.classList.toggle("active",b.dataset.filter==="all")});document.querySelectorAll(".project-filter").forEach(function(b){b.classList.toggle("active",b.dataset.project==="All projects")});render()});
+document.getElementById("focusNav").addEventListener("click",function(){filter="open";document.querySelectorAll("[data-filter]").forEach(function(b){b.classList.toggle("active",b.dataset.filter==="open")});render()});
+document.getElementById("clearDone").addEventListener("click",function(){tasks=tasks.filter(function(t){return !t.done});save();render()});
+document.getElementById("date").textContent=new Intl.DateTimeFormat(undefined,{weekday:"long",month:"long",day:"numeric"}).format(new Date());
+render();
+</script>
+</body>
+</html>
